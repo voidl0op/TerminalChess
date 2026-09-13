@@ -1,3 +1,9 @@
+/* TODO: ehhhhhh add a typedef position and a function that gets the
+ * slected piece and a function the place to move it to and if both
+ * are valid ( another fct ) pass them to move
+ * and maybe add colors after
+ * */
+
 /* 0 = empty 
  * 1 = pawn
  * 2 = bishop 
@@ -134,6 +140,7 @@ void move(int grid[8][8]) {
   print(grid);
 }
 
-void legal(int grid[8][8]) {
+void legal(int grid[8][8], int type) {
+
 
 }
