@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "types.h"
-void selpos(sel[3]) {
+void selpos(char sel[3]) {
   char sel[3];
   printf("Selectionez une piece\n");
   printf("(a->h) and (1->8): ");
@@ -27,8 +27,8 @@ pos charpos(char sel[3]) {
   chars[102] = 5; // 'f'
   chars[103] = 6; // 'g'
   chars[104] = 7; // 'h'
-  position.y = numbers[sel[0]];
-  position.x = chars[sel[1]];
+  position.y = chars[sel[0]];
+  position.x = numbers[sel[1]];
 
   return position;
 }
