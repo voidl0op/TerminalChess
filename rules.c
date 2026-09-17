@@ -1,6 +1,14 @@
 #include <stdbool.h>
 #include "types.h"
 
+bool is_valid(pos dest) {
+  if() {}
+  if() {}
+  if() {}
+  if() {}
+  return true;
+}
+
 bool is_legal(int pce,pos from, pos dest) {
   switch (pce){
     case EMPTY:

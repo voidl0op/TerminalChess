@@ -16,4 +16,10 @@ typedef enum {
     KING
 } PieceType;
 
+typedef enum {
+  TOP = 0,
+  BOTTOM = 7,
+  RIGHT= 0,
+  LEFT = 7
+}borders;
 #endif
