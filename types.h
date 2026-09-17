@@ -17,9 +17,20 @@ typedef enum {
 } PieceType;
 
 typedef enum {
-  TOP = 0,
-  BOTTOM = 7,
-  RIGHT= 0,
-  LEFT = 7
-}borders;
+    WHITE = 0,
+    BLACK = 1
+} Color;
+
+typedef struct {
+    PieceType type;
+    Color color;
+} Piece;
+
+typedef enum {
+    TOP = 0,
+    BOTTOM = 7,
+    RIGHT = 0,
+    LEFT = 7
+} borders;
+
 #endif

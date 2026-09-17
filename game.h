@@ -2,6 +2,6 @@
 #define GAME_H
 #include "types.h"
 
-void game_loop(int grid[8][8]);
+void game_loop(Piece grid[8][8]);
 
 #endif

@@ -56,7 +56,7 @@ The codebase is split by responsibility rather than kept as one file:
 
 | File | Responsibility |
 |---|---|
-| `types.h` | Shared typedefs — `pos`, `PieceType` enum, etc. |
+| `types.h` | Shared typedefs — `pos`, `PieceType`, `Color`, `Piece`, etc. |
 | `board.c` / `board.h` | Board representation, initial setup, printing the grid |
 | `input.c` / `input.h` | Reading and parsing user input into board positions |
 | `rules.c` / `rules.h` | Move legality — is a given move valid for a given piece |
@@ -70,14 +70,14 @@ Each module is meant to be usable and testable on its own — `rules.c`, for exa
 
 This project is a work in progress and under active restructuring. Current state:
 
-- [x] Board setup and printing
-- [x] Input parsing (square notation → internal position)
-- [ ] Move legality per piece type (in progress)
-- [ ] Applying moves / turn switching
-- [ ] Check / checkmate / stalemate detection
+- [x] Board setup and printing (with distinct glyphs per side)
+- [x] Input parsing (square notation → internal position, with validation)
+- [x] Move legality per piece type, including blocked-path checks for sliding pieces
+- [x] Applying moves / turn switching
+- [x] Check / checkmate / stalemate detection
+- [x] Pawn promotion
 - [ ] Castling
 - [ ] En passant
-- [ ] Pawn promotion
 
 ## License
 

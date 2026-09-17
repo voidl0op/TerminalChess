@@ -1,8 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
-// init a virgin board int the matrix
-void init(int grid[8][8]);
-// prints the board based on the matrix it's given
-void print(int grid[8][8]);
+#include <stdbool.h>
+#include "types.h"
+
+void init(Piece grid[8][8]);
+void print(Piece grid[8][8]);
+bool find_king(Piece grid[8][8], Color color, pos *out);
 
 #endif

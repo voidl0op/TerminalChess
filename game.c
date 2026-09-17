@@ -5,37 +5,74 @@
 #include "rules.h"
 #include "move.h"
 
-void game_loop(int grid[8][8]) {
-  while (1) {
-    print(grid);
+static const char* color_name(Color c) {
+    return c == WHITE ? "White" : "Black";
+}
 
-    char sel[3], dest_str[3];
-
-    printf("Piece to move:\n");
-    selpos(sel);
-    pos from = charpos(sel);
-
-    printf("Destination:\n");
-    selpos(dest_str);
-    pos dest = charpos(dest_str);
-
-    if (!in_board(from) || !in_board(dest)) {
-      printf("Out of bounds. Try again.\n");
-      continue;
+// reads one square from the player, re-prompting until it's valid input
+// (as opposed to a *legal move* -- that's checked separately)
+static bool read_square(pos *out) {
+    char sel[8];
+    if (!selpos(sel)) return false; // EOF / read failure
+    if (!charpos(sel, out)) {
+        printf("Not a square (use a letter a-h then a digit 1-8, e.g. e2).\n");
+        return read_square(out);
     }
+    return true;
+}
 
-    int pce = grid[from.x][from.y];
+void game_loop(Piece grid[8][8]) {
+    Color turn = WHITE;
 
-    if (pce == EMPTY) {
-      printf("Empty cell.\n");
-      continue;
+    while (1) {
+        print(grid);
+
+        if (!has_any_legal_move(grid, turn)) {
+            if (is_in_check(grid, turn)) {
+                printf("Checkmate! %s wins.\n", color_name(turn == WHITE ? BLACK : WHITE));
+            } else {
+                printf("Stalemate. It's a draw.\n");
+            }
+            return;
+        }
+
+        if (is_in_check(grid, turn)) {
+            printf("%s is in check.\n", color_name(turn));
+        }
+
+        printf("%s to move.\n", color_name(turn));
+
+        pos from, dest;
+
+        printf("Piece to move:\n");
+        if (!read_square(&from)) return; // EOF
+
+        printf("Destination:\n");
+        if (!read_square(&dest)) return; // EOF
+
+        Piece p = grid[from.x][from.y];
+
+        if (p.type == EMPTY) {
+            printf("That square is empty.\n");
+            continue;
+        }
+
+        if (p.color != turn) {
+            printf("That's not your piece.\n");
+            continue;
+        }
+
+        if (!is_legal(grid, from, dest)) {
+            printf("Illegal move.\n");
+            continue;
+        }
+
+        if (leaves_king_in_check(grid, from, dest, turn)) {
+            printf("That move would leave your king in check.\n");
+            continue;
+        }
+
+        move(grid, from, dest);
+        turn = (turn == WHITE) ? BLACK : WHITE;
     }
-
-    if (!is_legal(pce, from, dest)) {
-      printf("Illegal move.\n");
-      continue;
-    }
-
-    move(grid, from, dest);
-  }
 }

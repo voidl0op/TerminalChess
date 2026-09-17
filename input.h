@@ -1,8 +1,9 @@
 #ifndef INPUT_H
 #define INPUT_H
+#include <stdbool.h>
 #include "types.h"
 
-void selpos(char sel[3]);
-pos charpos(char sel[3]);
+bool selpos(char sel[8]);
+bool charpos(const char sel[8], pos *out);
 
 #endif
