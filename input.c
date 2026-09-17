@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "types.h"
 void selpos(char sel[3]) {
-  char sel[3];
   printf("Selectionez une piece\n");
   printf("(a->h) and (1->8): ");
   scanf("%s", sel);

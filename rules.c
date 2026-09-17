@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <math.h>
+#include <stdlib.h>
 #include "types.h"
 
 bool in_board(pos dest) {
@@ -25,7 +26,7 @@ bool is_legal(int pce,pos from, pos dest) {
       if(abs(dx)==abs(dy)) return true;
       else return false;
     case KNIGHT:
-      if((abs(dx)== 3 && abs(dy)=1)||(abs(dy)==3 && abs(dx)))
+      if((abs(dx)== 3 && abs(dy)==1)||(abs(dy)==3 && abs(dx)))
       return true;
       else return false;
     case ROOK:

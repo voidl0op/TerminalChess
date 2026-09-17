@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
-SRC = src/board.c src/input.c src/rules.c src/move.c src/game.c
+SRC = main.c board.c input.c rules.c move.c game.c
 BIN = chess
 
 $(BIN): $(SRC)
